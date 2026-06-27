@@ -25,8 +25,8 @@ init_commands: []
 | Valeur | Comportement |
 |---|---|
 | `default` | Config Apache générée automatiquement |
-| `get_config` | Exporte la config générée vers `/share/httpd.conf` et `/share/000-default.conf`, puis arrête l'add-on |
-| `/share/mon_apache.conf` | Utilise ton fichier comme `000-default.conf` |
+| `get_config` | Exporte la config générée vers `/share/somel-apache-httpd.conf` et `/share/somel-apache-000-default.conf`, puis arrête l'add-on |
+| `/share/mon_apache.conf` | Utilise ton fichier comme `somel-apache-000-default.conf` ou autre nom |
 
 ### Configuration PHP — `php_ini`
 
