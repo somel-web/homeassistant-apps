@@ -25,8 +25,10 @@ website_name: null
 | Valeur | Valeur |
 | --- | --- |
 | default | Config générée automatiquement par le script |
-| get_config | Exporte la config générée vers /share/httpd.conf et /share/000-default.conf → tu récupères le template |
+| get_config | **apache** Exporte la config générée vers /share/httpd.conf et /share/000-default.conf → tu récupères le template |
 | /share/mon_apache.conf | Utilise ton fichier custom comme 000-default.conf | 
+| get_file | **php** Exporte la config générée vers /share/apache2App_php.ini → tu récupères le template |
+| /share/monphp.ini | Utilise ton fichier custom comme php.ini | 
 
 
 ## Folder Usage
