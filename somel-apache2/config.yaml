@@ -2,8 +2,8 @@
 name: Apache2
 version: 1.0.0
 slug: somel-apache2
-description: Open Source Webserver with PHP and MariaDB.
-url: https://github.com/somel-web/hassio-addons/tree/master/apache2
+description: apache avec PHP 8.5
+url: https://github.com/somel-web/homeassistant-apps/tree/main/somel-apache2
 arch:
   - amd64
   - aarch64
