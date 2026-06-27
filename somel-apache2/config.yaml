@@ -1,6 +1,6 @@
 ---
 name: Apache2
-version: 1.0.2
+version: 1.0.3
 slug: somel-apache2
 description: apache avec PHP 8.5
 url: https://github.com/somel-web/homeassistant-apps/tree/main/somel-apache2
