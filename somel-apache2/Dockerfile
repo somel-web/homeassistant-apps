@@ -62,6 +62,9 @@ RUN mkdir /run/apache2 \
         "php${PHP_V}-pecl-apcu" \
         mariadb-client \
     && rm -f /var/www/localhost/htdocs/index.html
+    
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN sed -i -r 's@Errorlog .*@Errorlog /dev/stderr@i' /etc/apache2/httpd.conf \
  && sed -i 's/User apache/User www-data/' /etc/apache2/httpd.conf \
