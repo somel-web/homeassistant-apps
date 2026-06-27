@@ -1,45 +1,50 @@
 # Documentation
 
-Apache 2 web server pour Home Assistant OS PHP 8.5 
+Serveur web Apache 2 pour Home Assistant OS — PHP 8.5, support MariaDB externe.
 
 ## ⚙️ Configuration
 
-Configure the app via the **Configuration** tab in the Home Assistant App page.
+Configure l'add-on via l'onglet **Configuration** dans la page de l'add-on.
 
 ### Options
 
 ```yaml
-certfile: fullchain.pem
-default_conf: default
-default_ssl_conf: default
 document_root: /share/htdocs
-init_commands: []
+website_name: "web.local"
+ssl: false
+certfile: fullchain.pem
 keyfile: privkey.pem
 php_ini: default
-ssl: true
-website_name: null
+default_conf: default
+default_ssl_conf: default
+init_commands: []
 ```
-### Config Apache / php
-3 modes via default_conf
 
-| Valeur | Valeur |
-| --- | --- |
-| default | Config générée automatiquement par le script |
-| get_config | **apache** Exporte la config générée vers /share/httpd.conf et /share/000-default.conf → tu récupères le template |
-| /share/mon_apache.conf | Utilise ton fichier custom comme 000-default.conf | 
-| get_file | **php** Exporte la config générée vers /share/apache2App_php.ini → tu récupères le template |
-| /share/monphp.ini | Utilise ton fichier custom comme php.ini | 
+### Configuration Apache — `default_conf`
 
+| Valeur | Comportement |
+|---|---|
+| `default` | Config Apache générée automatiquement |
+| `get_config` | Exporte la config générée vers `/share/httpd.conf` et `/share/000-default.conf`, puis arrête l'add-on |
+| `/share/mon_apache.conf` | Utilise ton fichier comme `000-default.conf` |
 
-## Folder Usage
+### Configuration PHP — `php_ini`
 
-- `/share`: Used to store your website files. The default location is `/share/htdocs`. This allows you to easily edit your website files from outside the app container.
-- `/ssl`: Used for SSL certificates (`certfile` and `keyfile`). Required if `ssl: true` is enabled.
-- `/data`: Used for persistent storage of the MariaDB database and internal configurations.
+| Valeur | Comportement |
+|---|---|
+| `default` | php.ini par défaut |
+| `get_file` | Exporte le php.ini vers `/share/apache2App_php.ini`, puis arrête l'add-on |
+| `/share/mon.ini` | Utilise ton fichier comme `php.ini` |
 
+## Dossiers
 
+| Dossier | Usage |
+|---|---|
+| `/share/htdocs` | Fichiers du site web (valeur par défaut de `document_root`) |
+| `/ssl` | Certificats SSL (`certfile` et `keyfile`) — requis si `ssl: true` |
 
+## Connexion MariaDB
 
-
-
-
+Pour connecter une application PHP (ex. WordPress) à l'add-on officiel MariaDB :
+- **Host** : `core-mariadb`
+- **Port** : `3306`
