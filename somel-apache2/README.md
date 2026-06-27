@@ -1,14 +1,8 @@
-# Apache2
+# somel-apache2
 
 <img src="https://raw.githubusercontent.com/somel-web/hassio-addons/master/apache2/logo.png" width="100" alt="Logo" />
 
-> Open Source Webserver with PHP and MariaDB.
-
----
-
-## 📖 About
-
-pre-configured Apache2 environment with full PHP support and MariaDB client integration, 
+> Apache php 8.5
 
 ### Options
 
@@ -25,7 +19,4 @@ ssl: true
 website_name: web.local
 ```
 
----
 
-## 👨‍💻 Credits & License
-forked from **FaserF** addon
