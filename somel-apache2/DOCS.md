@@ -1,6 +1,7 @@
 # Documentation
 
-Serveur web Apache 2 pour Home Assistant OS — PHP 8.5, support MariaDB externe.
+Serveur web Apache 2 pour Home Assistant OS — PHP 8.5
+php composer installé
 
 ## ⚙️ Configuration
 
@@ -56,8 +57,28 @@ On peut donc aavoir plusieurs conf differentes
 | `/share/htdocs` | Fichiers du site web (valeur par défaut de `document_root`) |
 | `/ssl` | Certificats SSL (`certfile` et `keyfile`) — requis si `ssl: true` |
 
+## utilisation composer
+
+depuis le terminal de l'add-on via le SSH add-on ou le terminal HA
+```bash
+# trouver le nom du container
+docker ps --format "table {{.Names}}" | grep apache
+##2f52e210-somel-apache2
+
+# Entrer dans le container
+docker exec -it addon_somel-apache2 ash
+
+# Dans le container
+cd /share/htdocs/mon-projet
+composer install
+```
+Ou via init_commands dans la config de l'add-on :
+```yaml
+init_commands:
+  - "cd /share/htdocs/mon-projet && composer install --no-dev"
+```
 ## Connexion MariaDB
 
-Pour connecter une application PHP (ex. WordPress) à l'add-on officiel MariaDB :
+Pour connecter une application PHP à l'add-on officiel MariaDB :
 - **Host** : `core-mariadb`
 - **Port** : `3306`
