@@ -19,7 +19,7 @@ log_level=$(bashio::config 'log_level')
 webrootdocker=/var/www/localhost/htdocs/
 
 # Détection dynamique du chemin php.ini
-PHP_V=$(ls -d /etc/php* 2>/dev/null | head -1 | grep -oP 'php\K[0-9]+')
+PHP_V=$(ls -d /etc/php* 2>/dev/null | head -1 | sed 's|.*/php||')
 phppath="/etc/php${PHP_V}/php.ini"
 
 # Map Bashio log_level -> Apache log_level
