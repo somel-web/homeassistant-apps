@@ -63,8 +63,8 @@ APACHEEOF
 fi
 
 if [ "$phpini" = "get_file" ]; then
-    cp "$phppath" /share/apache2App_php.ini
-    echo "Copie de php.ini disponible dans /share/apache2App_php.ini"
+    cp "$phppath" /share/somel-apache2_php.ini
+    echo "Copie de php.ini disponible dans /share/somel-apache2_php.ini"
     echo "L'add-on va s'arrêter. Modifiez php_ini dans la config."
     exit 0
 fi
@@ -167,8 +167,8 @@ sed -i -e '/AllowOverride/s/None/All/' /etc/apache2/httpd.conf
 
 if [ "$default_conf" = "get_config" ]; then
     mkdir -p /etc/apache2/sites-enabled
-    [ -f /etc/apache2/sites-enabled/000-default.conf ] && cp /etc/apache2/sites-enabled/000-default.conf /share/000-default.conf && echo "Config copiée dans /share/000-default.conf"
-    [ -f /etc/apache2/httpd.conf ] && cp /etc/apache2/httpd.conf /share/httpd.conf && echo "httpd.conf copié dans /share/httpd.conf"
+    [ -f /etc/apache2/sites-enabled/000-default.conf ] && cp /etc/apache2/sites-enabled/000-default.conf /share/somel-apache-000-default.conf && echo "Config copiée dans /share/somel-apache-000-default.conf"
+    [ -f /etc/apache2/httpd.conf ] && cp /etc/apache2/httpd.conf /share/httpd.conf && echo "httpd.conf copié dans /share/httpd.conf pour infos"
     [ "$default_ssl_conf" != "get_config" ] && echo "Arrêt." && exit 0
 fi
 
