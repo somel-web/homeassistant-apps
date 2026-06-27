@@ -168,7 +168,7 @@ sed -i -e '/AllowOverride/s/None/All/' /etc/apache2/httpd.conf
 if [ "$default_conf" = "get_config" ]; then
     mkdir -p /etc/apache2/sites-enabled
     [ -f /etc/apache2/sites-enabled/000-default.conf ] && cp /etc/apache2/sites-enabled/000-default.conf /share/somel-apache-000-default.conf && echo "Config copiée dans /share/somel-apache-000-default.conf"
-    [ -f /etc/apache2/httpd.conf ] && cp /etc/apache2/httpd.conf /share/httpd.conf && echo "httpd.conf copié dans /share/httpd.conf pour infos"
+    [ -f /etc/apache2/httpd.conf ] && cp /etc/apache2/httpd.conf /share/somel-apache-httpd.conf && echo "httpd.conf copié dans /share/somel-apache-httpd.conf "
     [ "$default_ssl_conf" != "get_config" ] && echo "Arrêt." && exit 0
 fi
 
