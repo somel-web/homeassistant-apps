@@ -39,13 +39,14 @@ init_commands: []
 ### Résumé du workflow complet de configuration (exemple pour apache)
 
 1. default_conf: get_config
-   → exporte httpd.conf + somel-apache-000-default.conf dans /share/
+   → exporte les httpd.conf + 000-default.conf dans /share/
    → arrête l'add-on
 
-2. Tu édites /share/somel-apache-000-default.conf selon tes besoins
+2. Tu édites une des conf par ex /share/somel-apache-000-default.conf selon tes besoins
 
-3. default_conf: /share/somel-apache-000-default.conf
-   → utilise ton fichier comme VirtualHost
+3. dans default_conf: /share/somel-apache-000-default.conf
+   → utilise ce fichier comme VirtualHost
+   
 On peut donc aavoir plusieurs conf differentes
 
 ## Dossiers
