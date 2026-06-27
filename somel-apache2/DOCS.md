@@ -26,7 +26,7 @@ init_commands: []
 |---|---|
 | `default` | Config Apache générée automatiquement |
 | `get_config` | Exporte la config générée vers `/share/somel-apache-httpd.conf` et `/share/somel-apache-000-default.conf`, puis arrête l'add-on |
-| `/share/mon_apache.conf` | Utilise ton fichier comme `somel-apache-000-default.conf` ou autre nom |
+| `/share/mon_apache.conf` | Utilise ton fichier comme fichier `httpd.conf` apache |
 
 ### Configuration PHP — `php_ini`
 
@@ -34,7 +34,19 @@ init_commands: []
 |---|---|
 | `default` | php.ini par défaut |
 | `get_file` | Exporte le php.ini vers `/share/apache2App_php.ini`, puis arrête l'add-on |
-| `/share/mon.ini` | Utilise ton fichier comme `php.ini` |
+| `/share/mon.ini` | Utilise ton fichier comme `php.ini` pour PHP |
+
+### Résumé du workflow complet de configuration (exemple pour apache)
+
+1. default_conf: get_config
+   → exporte httpd.conf + somel-apache-000-default.conf dans /share/
+   → arrête l'add-on
+
+2. Tu édites /share/somel-apache-000-default.conf selon tes besoins
+
+3. default_conf: /share/somel-apache-000-default.conf
+   → utilise ton fichier comme VirtualHost
+On peut donc aavoir plusieurs conf differentes
 
 ## Dossiers
 
