@@ -63,10 +63,10 @@ depuis le terminal de l'add-on via le SSH add-on ou le terminal HA
 ```bash
 # trouver le nom du container
 docker ps --format "table {{.Names}}" | grep apache
-##2f52e210-somel-apache2
+#par exemple addon_2f52e210_somel-apache2
 
 # Entrer dans le container
-docker exec -it addon_somel-apache2 ash
+docker exec -it addon_xxxx_somel-apache2 ash
 
 # Dans le container
 cd /share/htdocs/mon-projet
