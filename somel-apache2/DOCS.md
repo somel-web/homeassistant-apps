@@ -82,3 +82,23 @@ init_commands:
 Pour connecter une application PHP à l'add-on officiel MariaDB :
 - **Host** : `core-mariadb`
 - **Port** : `3306`
+
+## Client SSH
+
+`openssh-client` est installé dans l'image (depuis la v1.0.4), pour les scripts
+PHP qui ont besoin de se connecter en sortant vers un autre appareil du LAN
+(ex: watchdog qui vérifie/relance un service distant via SSH par clé).
+
+Générer une clé dédiée, stockée dans `/share/` pour survivre aux redémarrages :
+```bash
+mkdir -p /share/ssh_keys
+ssh-keygen -t ed25519 -N "" -f /share/ssh_keys/ma_cle -C "description"
+```
+
+⚠️ Les requêtes PHP sont traitées par les process enfants Apache, qui tournent
+en `www-data` — pas en `root`, même si le shell `docker exec`/terminal l'est.
+La clé privée doit appartenir à `www-data` pour être lisible par PHP :
+```bash
+chown www-data:www-data /share/ssh_keys/ma_cle
+chmod 600 /share/ssh_keys/ma_cle
+```
