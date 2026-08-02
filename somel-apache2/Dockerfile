@@ -21,6 +21,7 @@ RUN mkdir /run/apache2 \
         apache2${APACHE2_VERSION:+=$APACHE2_VERSION} \
         curl \
         jq \
+        openssh-client \
     && PHP_V=$(echo "${PHP_VERSION}" | cut -d. -f1-2 | tr -d '.') \
     && apk add --no-cache \
         "php${PHP_V}-apache2" \
