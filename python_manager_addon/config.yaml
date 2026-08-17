@@ -1,0 +1,53 @@
+name: "Python Script Manager"
+version: "0.1.0"
+slug: python_manager
+description: >-
+  Créer, éditer et gérer des scripts Python (start/stop/status),
+  terminal web intégré, accès API Supervisor, proxy dynamique
+  pour les scripts exposant un service web.
+url: ""
+arch:
+  - amd64
+  - aarch64
+init: false            # notre entrypoint.sh gère lui-même le PID 1 (traps signaux)
+startup: application
+boot: auto
+
+# --- Ingress : point d'entrée principal (UI d'admin + éditeur + terminal) ---
+ingress: true
+ingress_port: 8099
+panel_icon: mdi:language-python
+panel_title: Python Manager
+
+# --- Accès API ---
+homeassistant_api: true
+hassio_api: true
+hassio_role: manager   # cf. README : "default" suffit si vous n'appelez pas /addons/* d'autres addons
+
+# --- Montages ---
+map:
+  - share:rw            # /share -> exposé en rw, on y crée /share/addon-python
+  - addon_config:rw
+
+# --- Port unique exposé pour l'accès EXTERNE aux scripts web (voir stratégie proxy dans README) ---
+ports:
+  "8090/tcp": 8095   # port HOTE par défaut (le conteneur écoute en interne sur 8090, sans lien
+                     # avec les autres add-ons). Remappable sans toucher ce fichier :
+                     # Paramètres > Modules complémentaires > cet add-on > onglet Réseau.
+ports_description:
+  "8090/tcp": >-
+    Point d'entrée unique pour les scripts qui exposent un serveur web.
+    Routage interne par chemin /s/<nom_du_script>/ (voir README - stratégie de proxy).
+    NE PAS ajouter d'autres ports ici : tout nouveau script web passe par
+    ce port unique + une règle nginx générée dynamiquement par le backend.
+
+options:
+  terminal_user: "admin"
+  terminal_password: "changeme"
+  script_port_range_start: 9000
+  script_port_range_end: 9099
+schema:
+  terminal_user: str
+  terminal_password: password
+  script_port_range_start: int(1024,65000)
+  script_port_range_end: int(1024,65000)

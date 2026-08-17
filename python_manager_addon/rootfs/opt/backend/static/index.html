@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Python Script Manager</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+</head>
+<body>
+  <header>
+    <h1>🐍 Python Script Manager</h1>
+    <nav>
+      <button id="tab-scripts" class="tab active">Scripts</button>
+      <button id="tab-terminal" class="tab">Terminal</button>
+    </nav>
+  </header>
+
+  <section id="view-scripts" class="view active">
+    <div class="toolbar">
+      <button id="btn-new">+ Nouveau script</button>
+      <button id="btn-refresh">⟳ Rafraîchir</button>
+    </div>
+    <div id="script-list" class="script-list"></div>
+  </section>
+
+  <section id="view-terminal" class="view">
+    <iframe id="terminal-frame" src="terminal/" title="Terminal web"></iframe>
+  </section>
+
+  <!-- Modale éditeur -->
+  <div id="editor-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <input id="editor-name" placeholder="nom_du_script.py">
+        <label><input type="checkbox" id="editor-needs-port"> Expose un service web ($PORT)</label>
+        <label><input type="checkbox" id="editor-autostart"> Démarrage auto</label>
+        <button id="editor-close">✕</button>
+      </div>
+      <div id="editor-cm"></div>
+      <div class="modal-footer">
+        <span id="editor-status"></span>
+        <button id="editor-save">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
