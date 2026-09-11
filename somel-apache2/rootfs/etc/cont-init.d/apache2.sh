@@ -167,6 +167,17 @@ sed -i -e '/AllowOverride/s/None/All/' /etc/apache2/httpd.conf
 
 if [ "$default_conf" = "get_config" ]; then
     mkdir -p /etc/apache2/sites-enabled
+    if [ ! -f /etc/apache2/sites-enabled/000-default.conf ]; then
+        cat > /etc/apache2/sites-enabled/000-default.conf << VHOSTEOF
+<VirtualHost *:80>
+    ServerName $website_name
+    ServerAdmin webmaster@localhost
+    DocumentRoot $webrootdocker
+    ErrorLog /dev/stderr
+</VirtualHost>
+VHOSTEOF
+        echo "Aucun 000-default.conf existant — gabarit de base généré pour l'export."
+    fi
     [ -f /etc/apache2/sites-enabled/000-default.conf ] && cp /etc/apache2/sites-enabled/000-default.conf /share/somel-apache-000-default.conf && echo "Config copiée dans /share/somel-apache-000-default.conf"
     [ -f /etc/apache2/httpd.conf ] && cp /etc/apache2/httpd.conf /share/somel-apache-httpd.conf && echo "httpd.conf copié dans /share/somel-apache-httpd.conf "
     [ "$default_ssl_conf" != "get_config" ] && echo "Arrêt." && exit 0
