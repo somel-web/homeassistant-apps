@@ -12,7 +12,7 @@ ENV APP_SLUG="apache2"
 WORKDIR /tmp
 
 ARG PHP_VERSION="8.5"
-ARG APACHE2_VERSION="2.4.67-r0"
+ARG APACHE2_VERSION=""
 
 # hadolint ignore=DL3018
 RUN mkdir /run/apache2 \
