@@ -26,8 +26,8 @@ init_commands: []
 | Valeur | Comportement |
 |---|---|
 | `default` | Config Apache générée automatiquement |
-| `get_config` | Exporte la config générée vers `/share/somel-apache-httpd.conf` et `/share/somel-apache-000-default.conf`, puis arrête l'add-on |
-| `/share/mon_apache.conf` | Utilise ton fichier comme fichier `httpd.conf` apache |
+| `get_config` | Exporte la config vers `/share/somel-apache-httpd.conf` (httpd.conf complet, informatif) et `/share/somel-apache-000-default.conf` (gabarit de VirtualHost, généré même sans SSL — c'est **celui-ci** qu'il faut éditer et réutiliser), puis arrête l'add-on |
+| `/share/mon_apache.conf` | Copie ton fichier dans `sites-enabled/000-default.conf`, inclus depuis `httpd.conf` — donc utilisé comme un VirtualHost, PAS comme remplacement du `httpd.conf` (ne pas y mettre `ServerRoot`, `Listen`, `LoadModule`, `User`/`Group`, déjà définis ailleurs) |
 
 ### Configuration PHP — `php_ini`
 
